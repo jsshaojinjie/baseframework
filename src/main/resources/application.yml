@@ -1,0 +1,12 @@
+#关闭thymeleaf缓存
+spring:
+  thymeleaf:
+    cache: false
+    # 加载指定配置文件
+    profiles:
+      active: dev
+
+# 配置tomcat请求最大头
+server:
+  max-http-header-size: 1048576
+  port: 9999
