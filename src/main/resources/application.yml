@@ -1,12 +1,30 @@
-#关闭thymeleaf缓存
-spring:
-  thymeleaf:
-    cache: false
-    # 加载指定配置文件
-    profiles:
-      active: dev
-
 # 配置tomcat请求最大头
 server:
   max-http-header-size: 1048576
   port: 9999
+
+#关闭thymeleaf缓存
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://10.8.1.26:3306/test?setUnicode=true&characterEncoding=utf8
+
+
+# mybaits-plus配置
+mybatis-plus:
+  # MyBatis Mapper所对应的XML文件位置
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: 1
+      # 默认数据库表下划线命名
+      table-underline: true
+  configuration:
+    map-underscore-to-camel-case: true
