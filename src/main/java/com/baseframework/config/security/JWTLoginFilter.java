@@ -2,9 +2,8 @@ package com.baseframework.config.security;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.json.JSONUtil;
-import com.baseframework.pojo.common.CommonConstants;
 import com.baseframework.pojo.common.R;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.baseframework.pojo.enums.ResultCodeEnum;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import net.minidev.json.JSONObject;
@@ -48,7 +47,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
         );
     }
 
-    // 用户成功登录后，这个方法会被调用，我们在这个方法里生成token
+    // 用户成功登录后，这个方法会被调用，我们在这个方法里生成token返回给前端
     @Override
     protected void successfulAuthentication(HttpServletRequest req,
                                             HttpServletResponse res,
@@ -64,7 +63,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
         res.setContentType(MediaType.APPLICATION_JSON_VALUE);
         JSONObject object = new JSONObject();
         object.put("token", token);
-        R r = R.builder().data(object).build();
+        R r = R.success(object);
         PrintWriter out;
         try {
             out = res.getWriter();
@@ -81,6 +80,6 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void unsuccessfulAuthentication(HttpServletRequest req, HttpServletResponse res, AuthenticationException failed) throws IOException, ServletException {
         res.setCharacterEncoding(CharsetUtil.UTF_8);
         res.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        res.getWriter().write(JSONUtil.toJsonStr(R.builder().code(CommonConstants.FAIL).msg(failed.getMessage()).build()));
+        res.getWriter().write(JSONUtil.toJsonStr(R.builder().code(ResultCodeEnum.FAIL).msg(failed.getMessage()).build()));
     }
 }

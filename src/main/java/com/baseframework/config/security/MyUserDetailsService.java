@@ -2,6 +2,7 @@
 package com.baseframework.config.security;
 
 
+import cn.hutool.crypto.SecureUtil;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +46,10 @@ public class MyUserDetailsService implements UserDetailsService {
      * @return
      */
     private UserDetails getUserDetails(String username) {
+        //TODO 加上redis缓存
+        //TODO 查询数据库真是数据
         List<MyGrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(MyGrantedAuthority.builder().authority("role1").build());
-        return new CurrentUser(1, username, "111111", true, true, true, true, authorityList);
+        return new CurrentUser(1, username, SecureUtil.md5("111111"), true, true, true, true, authorityList);
     }
 }

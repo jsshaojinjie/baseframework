@@ -35,8 +35,6 @@ import java.util.Collection;
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AuthenticationProvider provider;// 自定义的AuthenticationProvider
-
     private final UserDetailsService userDetailsService;
 
     @Bean
@@ -56,7 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(provider);
         auth.userDetailsService(userDetailsService);
     }
 

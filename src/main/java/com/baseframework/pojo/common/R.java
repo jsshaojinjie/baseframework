@@ -1,6 +1,7 @@
 
 package com.baseframework.pojo.common;
 
+import com.baseframework.pojo.enums.ResultCodeEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -22,7 +23,7 @@ public class R<T> implements Serializable {
 
     @Getter
     @Setter
-    private int code = CommonConstants.SUCCESS;
+    private ResultCodeEnum code = ResultCodeEnum.SUCCESS;
 
     @Getter
     @Setter
@@ -38,6 +39,15 @@ public class R<T> implements Serializable {
 
     @JsonIgnore
     public boolean isSuccess() {
-        return this.code == CommonConstants.SUCCESS ? true : false;
+        return this.code == ResultCodeEnum.SUCCESS ? true : false;
+    }
+
+
+    public static <T> R success(T data) {
+        return R.builder().code(ResultCodeEnum.SUCCESS).data(data).build();
+    }
+
+    public static <T> R fial(T data, String message) {
+        return R.builder().code(ResultCodeEnum.FAIL).data(data).msg(message).build();
     }
 }

@@ -1,6 +1,7 @@
 package com.baseframework.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baseframework.pojo.enums.EffectiveSignEnum;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -20,5 +21,5 @@ public class BaseEntity {
      * 有效标识，0有效、1失效
      */
     @TableLogic
-    private Integer effectiveSign;
+    private EffectiveSignEnum effectiveSign;
 }
