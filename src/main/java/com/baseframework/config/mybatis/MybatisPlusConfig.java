@@ -1,5 +1,5 @@
 
-package com.baseframework.config;
+package com.baseframework.config.mybatis;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
