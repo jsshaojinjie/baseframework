@@ -38,8 +38,6 @@ import static com.baseframework.config.poi.excel.ExcelUtil.*;
 public class ExcelWriteUtil {
 
     private static int rowMaxCount = 60000;
-    //    private static String bucketName = CommonConstants.BUCKET_NAME;
-    private static String bucketName = "syseximport";
 
     @Autowired
     private ExcelFileUtil excelFileUtil;
@@ -114,7 +112,6 @@ public class ExcelWriteUtil {
 
 
     private static long getPerSheetImageByteSize(ExcelWriteData... dataList) {
-//        return 1024 * 1024 * 100 / dataList.length;
         return 1024 * 1024 * 100 / dataList.length;
     }
 

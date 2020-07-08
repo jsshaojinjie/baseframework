@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baseframework.config.poi.excel.annotation.Excel;
 import com.baseframework.config.poi.excel.exception.ExcelImportException;
 import com.baseframework.config.poi.excel.pojo.*;
-import com.sun.deploy.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -35,10 +35,8 @@ public class ExcelReadUtil {
     private ExcelImageUtil excelImageUtil;
 
 
-
-
     /**
-     * 标准excel读取，标题为第一行，有图片
+     * 标准excel读取
      */
     public ExcelResult read(String filePath, Class... tClassList) {
         ExcelClassData[] list = new ExcelClassData[tClassList.length];
@@ -56,18 +54,9 @@ public class ExcelReadUtil {
     }
 
 
-    //已弃用，请使用read方法
-    @Deprecated
-    public ExcelResult readExcelData(String filePath, Class... tClassList) {
-        ExcelClassData[] list = new ExcelClassData[tClassList.length];
-        for (int i = 0; i < tClassList.length; i++) {
-            list[i] = new ExcelClassData(tClassList[i], 1);
-        }
-        return this.readExcelData(filePath, list);
-    }
-
     /**
      * 读取excel文件
+     *
      * @param filePath           文件地址
      * @param excelClassDataList 对象的基本信息
      */
@@ -81,8 +70,7 @@ public class ExcelReadUtil {
             excelResult.setWorkbook(workbook);
             for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
                 //图片数据
-                Map<String, List<ExcelImageData>> imageDataMap = new HashMap<>();
-                imageDataMap = excelImageUtil.readImageData( excelFileUtil.get(filePath), i, filePath);
+                Map<String, List<ExcelImageData>> imageDataMap = excelImageUtil.readImageData(excelFileUtil.get(filePath), i, filePath);
                 excelResult.getDataList().add(readExcelData(workbook, excelClassDataList[i], i, imageDataMap));
             }
             return excelResult;
