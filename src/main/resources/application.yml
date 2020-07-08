@@ -7,6 +7,11 @@ server:
 spring:
   profiles:
     active: dev
+  redis:
+    password:
+    host: localhost
+    port: 6379
+  cache: redis
 
 
 # mybaits-plus配置
@@ -21,5 +26,8 @@ mybatis-plus:
       field-strategy: 1
       # 默认数据库表下划线命名
       table-underline: true
+  typeEnumsPackage: com.baseframework.pojo.**.*
   configuration:
     map-underscore-to-camel-case: true
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

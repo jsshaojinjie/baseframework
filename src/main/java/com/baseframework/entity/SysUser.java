@@ -3,13 +3,11 @@ package com.baseframework.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baseframework.pojo.BaseEntity;
+import com.baseframework.pojo.common.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -34,6 +32,7 @@ public class SysUser extends BaseEntity implements Serializable {
     /**
      * 密码
      */
+    @JsonIgnore
     private String password;
 
     /**

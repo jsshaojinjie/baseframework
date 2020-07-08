@@ -3,6 +3,9 @@ package com.baseframework.config.security;
 
 
 import cn.hutool.crypto.SecureUtil;
+import com.baseframework.entity.SysUser;
+import com.baseframework.pojo.sysuser.SysUserLoginInfo;
+import com.baseframework.service.ISysUserService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,8 @@ import java.util.*;
 public class MyUserDetailsService implements UserDetailsService {
 
 
+    private final ISysUserService sysUserService;
+
     /**
      * 用户密码登录
      *
@@ -46,10 +51,13 @@ public class MyUserDetailsService implements UserDetailsService {
      * @return
      */
     private UserDetails getUserDetails(String username) {
-        //TODO 加上redis缓存
         //TODO 查询数据库真是数据
         List<MyGrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(MyGrantedAuthority.builder().authority("role1").build());
-        return new CurrentUser(1, username, SecureUtil.md5("111111"), true, true, true, true, authorityList);
+        SysUserLoginInfo sysUser = this.sysUserService.findByUsername(username);
+        if (sysUser == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
+        return new CurrentUser(sysUser.getId(), sysUser.getUsername(), sysUser.getPassword(), true, true, true, true, authorityList);
     }
 }
