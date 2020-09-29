@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author 邵锦杰
+ */
 @Data
 public class BaseEntity {
     /**

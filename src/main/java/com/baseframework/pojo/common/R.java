@@ -12,7 +12,7 @@ import java.io.Serializable;
  * 响应信息主体
  *
  * @param <T>
- * @author yaomajor
+ * @author 邵锦杰
  */
 @Builder
 @ToString
@@ -47,7 +47,7 @@ public class R<T> implements Serializable {
         return R.builder().code(ResultCodeEnum.SUCCESS).data(data).build();
     }
 
-    public static <T> R fial(T data, String message) {
+    public static <T> R fail(T data, String message) {
         return R.builder().code(ResultCodeEnum.FAIL).data(data).msg(message).build();
     }
 }

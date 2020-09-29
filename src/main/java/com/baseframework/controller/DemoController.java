@@ -2,6 +2,9 @@ package com.baseframework.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author 邵锦杰
+ */
 @RestController
 @RequestMapping("/demo")
 public class DemoController {

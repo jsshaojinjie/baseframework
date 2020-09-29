@@ -17,7 +17,7 @@ public class SysUserLoginInfo {
     private String password;
 
     /**
-     * 简介
+     * 电话
      */
     private String phone;
 

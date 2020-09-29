@@ -8,6 +8,9 @@ import lombok.Getter;
 import java.util.Objects;
 
 
+/**
+ * @author 邵锦杰
+ */
 @Getter
 public enum EffectiveSignEnum {
 

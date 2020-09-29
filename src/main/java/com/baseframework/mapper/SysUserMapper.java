@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baseframework.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
+/**
+ * @author 邵锦杰
+ */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
     @Select("select * from sys_user where id = #{id}")

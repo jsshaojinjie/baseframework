@@ -10,9 +10,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * <p>
- * 用户表
- * </p>
+ * @author 邵锦杰
  */
 @Data
 public class SysUser extends BaseEntity implements Serializable {
